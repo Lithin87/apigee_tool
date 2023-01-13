@@ -1,0 +1,13 @@
+{
+    "name": "@runkit/lithin87_63c03b9d004bda0008fed3f9",
+    "version": "0.0.0-master",
+    "main": "./index.js",
+    "dependencies": {
+        "fast-xml-parser": "4.0.13",
+        "jsonpath": "1.1.1",
+        "excel4node": "1.8.0"
+    },
+    "scripts": {
+        "main": "node index.js"
+    }
+}

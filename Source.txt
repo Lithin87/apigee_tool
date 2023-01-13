@@ -1,0 +1,12 @@
+<soap:Envelope xmlns:tem="http://tempuri.org/" xmlns:soap="http://www.w3.org/2003/05/soap-envelope"><soap:Header xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wsrm="http://docs.oasis-open.org/ws-rx/wsrm/200702"><wsa:Action>http://tempuri.org/IOpsamAPIService/UpdateIdMatchingStatus</wsa:Action><wsa:To>https://preprod.appointments.common.int.boots.co.uk/QFlow_63_API/Services/OpsamAPIService.svc</wsa:To></soap:Header><soap:Body><tem:UpdateIdMatchingStatus xmlns:tem="http://tempuri.org/">
+    <tem:apiSessionId>A</tem:apiSessionId>
+    <tem:qflowCustomerId>B</tem:qflowCustomerId>
+    <tem:remoteId>C</tem:remoteId>
+    <tem:remoteType>D</tem:remoteType>
+</tem:UpdateIdMatchingStatus></soap:Body></soap:Envelope>
+<soap:Envelope xmlns:tem="http://tempuri.org/" xmlns:soap="http://www.w3.org/2003/05/soap-envelope"><soap:Header xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wsrm="http://docs.oasis-open.org/ws-rx/wsrm/200702"><wsa:Action>http://tempuri.org/IOpsamAPIService/UpdateIdMatchingStatus</wsa:Action><wsa:To>https://preprod.appointments.common.int.boots.co.uk/QFlow_63_API/Services/OpsamAPIService.svc</wsa:To></soap:Header><soap:Body><tem:UpdateIdMatchingStatus xmlns:tem="http://tempuri.org/">
+    <tem:apiSessionId>E</tem:apiSessionId>
+    <tem:qflowCustomerId>F</tem:qflowCustomerId>
+    <tem:remoteId>G</tem:remoteId>
+    <tem:remoteType>Z1</tem:remoteType>
+</tem:UpdateIdMatchingStatus></soap:Body></soap:Envelope>
