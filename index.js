@@ -5,56 +5,44 @@ var xl = require('excel4node');
 
     const options = {
         ignoreAttributes: true,
-        attributeNamePrefix : "@",
         removeNSPrefix: true
     };
     
-var xmlDataStr = fs.readFileSync("Source.txt");
-
 const parser = new XMLParser(options);
-const output = parser.parse(xmlDataStr);
-    
-var a1=[]
-var a2=[]
-var a3=[]
-var a4=[]
-     
-a1.push(...jp.query(output, '$..apiSessionId'));
-a2.push(...jp.query(output, '$..qflowCustomerId'));
-a3.push(...jp.query(output, '$..remoteId'));
-a4.push(...jp.query(output, '$..remoteType'));
+const output = parser.parse(fs.readFileSync("Source.txt"));
     
 
-fs.rmSync("Final.txt");
-fs.rmSync("Apigee.xlsx");
+var a1 = jp.query(output, '$..apiSessionId');
+var a2 = jp.query(output, '$..qflowCustomerId');
+var a3 = jp.query(output, '$..remoteId');
+var a4 = jp.query(output, '$..time');
+var a5 = jp.query(output, '$..status');
 
+var file_output = jp.query(output , '$..*')
 
-  for (var i in a1) 
-  {
-  var t= "\n"+a1[i]+ ","+ a2[i] +","+ a3[i] + ","+ a4[i];
+fs.writeFileSync("XMLParser",JSON.stringify(file_output),{flag:'a'})
+
+fs.rmSync("Final.txt", { force: true });
+fs.rmSync("Apigee.xlsx", { force: true });
+
+var t= "Session ID"+ ","+ "QflowID" +","+ "CustomerID" + ","+ "Time" + "," + "Pass/Fail";
+for (var i in a1) 
+{ 
   fs.writeFileSync("Final.txt",t,{flag:'a'})
-
+   var t= "\n"+a1[i]+ ","+ a2[i] +","+ a3[i] + ","+ a4[i] + "," + a5[i];
 }
-const df = fs.readFileSync("Final.txt");
-const lines = df.toString().split(/\r?\n/);
-
 
 var wb = new xl.Workbook();
 var ws = wb.addWorksheet('TAB 1');
-for (let j=1;j<=lines.length-1;j++){             
-    // Create a reusable style
-    var style = wb.createStyle({
-      font: {
-        color: '#050000',
-        size: 12,
-      },
-  
-    });
-  
-      pieces = lines[j].split(",")
-      pieces.forEach((element, index) =>{
-      ws.cell(j, index+1).string(element).style(style);
-      });
-  
-  } 
-wb.write("Apigee.xlsx");;
+
+// var style = wb.createStyle({
+//   font: {
+//     color: '#050000',
+//     size: 14,
+//   },
+// });
+
+const lines = fs.readFileSync("Final.txt").toString().split(/\r?\n/);
+lines.forEach((c,i) =>  c.split(",").forEach((element, index) =>  ws.cell(i+1, index+1).string(element)) )
+
+wb.write("Apigee.xlsx");
